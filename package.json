@@ -1,5 +1,5 @@
 {
-  "name": "app-optihire",
+  "name": "app-rpg-manager",
   "private": true,
   "workspaces": [
     "backend",

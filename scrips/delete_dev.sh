@@ -10,4 +10,4 @@ docker compose down --rmi all
 docker compose down -v
 
 # Deleta networks
-docker network rm -f optihire-network
+docker network rm -f rpg-manager-network

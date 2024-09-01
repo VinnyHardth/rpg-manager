@@ -1,8 +1,6 @@
 # Rpg-manager
 
-
 ### Introdução
-
 
 **Tecnologias utilizadas**:
 

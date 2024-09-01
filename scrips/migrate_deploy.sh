@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker exec -it backend_optihire npx prisma migrate deploy
-docker exec -it backend_optihire npm run seed
+docker exec -it backend_rpg-manager npx prisma migrate deploy
+docker exec -it backend_rpg-manager npm run seed

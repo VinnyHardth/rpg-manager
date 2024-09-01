@@ -17,7 +17,7 @@ check_and_kill_processes
 docker compose up -d
 
 echo "Aguardando banco de dados estar pronto para receber conexões..."
-DB_CONTAINER_NAME="dboptihire"
+DB_CONTAINER_NAME="dbrpg-manager"
 until docker exec $DB_CONTAINER_NAME mysqladmin ping --silent; do
     echo "Verificando conectividade com o banco de dados... 🔍"
     sleep 10
