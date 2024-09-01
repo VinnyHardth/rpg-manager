@@ -1,0 +1,311 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id            String   @id @default(uuid()) @db.Char(36)
+  nome          String   @db.VarChar(100)
+  email         String   @unique @db.VarChar(100)
+  dataNasc      DateTime @map("data_nasc")
+  cpf           String   @unique @db.VarChar(14)
+  senha         String   @db.Char(64)
+  fotoPerfil    String?  @map("foto_perfil") @db.VarChar(255)
+  status        String   @db.VarChar(50)
+  razaoExclusao String?  @map("razao_exclusao") @db.VarChar(100)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  recrutador Recrutador?
+  candidato  Candidato?
+  contato    Contato?
+
+  enderecos Endereco[]
+
+  @@map("usuario")
+}
+
+model Endereco {
+  id          String  @id @default(uuid()) @db.Char(36)
+  cep         String  @db.VarChar(10)
+  complemento String? @db.VarChar(100)
+  numero      String  @db.VarChar(10)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idUsuario String  @map("id_usuario") @db.Char(36)
+  usuario   Usuario @relation(fields: [idUsuario], references: [id])
+
+  @@map("endereco")
+}
+
+model Contato {
+  id       String  @id @default(uuid()) @db.Char(36)
+  celular  String? @unique @db.VarChar(15)
+  telefone String? @unique @db.VarChar(15)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idUsuario String  @unique @map("id_usuario") @db.Char(36)
+  usuario   Usuario @relation(fields: [idUsuario], references: [id])
+
+  @@map("contato")
+}
+
+model Recrutador {
+  id    String @id @default(uuid()) @db.Char(36)
+  cargo String @db.VarChar(50)
+  setor String @db.VarChar(100)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idUsuario String  @unique @map("id_usuario") @db.Char(36)
+  usuario   Usuario @relation(fields: [idUsuario], references: [id])
+  vagas     Vaga[]
+
+  @@map("recrutador")
+}
+
+model Candidato {
+  id            String  @id @default(uuid()) @db.Char(36)
+  objetivo      String? @db.Text
+  faixaSalarial String? @map("faixa_salarial") @db.VarChar(100)
+  portfolio     String? @db.VarChar(255)
+  curriculo     String? @db.VarChar(255)
+  dispViagens   Boolean @map("disp_viagens")
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idUsuario String  @unique @map("id_usuario") @db.Char(36)
+  usuario   Usuario @relation(fields: [idUsuario], references: [id])
+
+  formacoes        Formacao[]
+  experiencias     Experiencia[]
+  vagasCandidatos  VagaCandidato[]
+  skills           Skill[]
+  idiomas          Idioma[]
+  QuestaoCandidato QuestaoCandidato[]
+
+  @@map("candidato")
+}
+
+model Formacao {
+  id           String    @id @default(uuid()) @db.Char(36)
+  curso        String    @db.VarChar(150)
+  instituicao  String    @db.VarChar(150)
+  dataInicio   DateTime  @map("data_inicio")
+  dataFim      DateTime? @map("data_fim")
+  dataPrevisao DateTime? @map("data_previsao")
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idCandidato String    @map("id_candidato") @db.Char(36)
+  candidato   Candidato @relation(fields: [idCandidato], references: [id])
+
+  @@map("formacao")
+}
+
+model Experiencia {
+  id          String    @id @default(uuid()) @db.Char(36)
+  cargo       String    @db.VarChar(100)
+  instituicao String    @db.VarChar(150)
+  dataInicio  DateTime  @map("data_inicio")
+  dataFim     DateTime? @map("data_fim")
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idCandidato String    @map("id_candidato") @db.Char(36)
+  candidato   Candidato @relation(fields: [idCandidato], references: [id])
+
+  @@map("experiencia")
+}
+
+model Skill {
+  id         String @id @default(uuid()) @db.Char(36)
+  habilidade String @db.VarChar(50)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idCandidato String    @map("id_candidato") @db.Char(36)
+  candidato   Candidato @relation(fields: [idCandidato], references: [id])
+
+  @@index([idCandidato]) // Adiciona um índice não único para o campo idCandidato
+  @@map("skill")
+}
+
+model Idioma {
+  id     String @id @default(uuid()) @db.Char(36)
+  lingua String @db.VarChar(50)
+  nivel  String @db.VarChar(50)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idCandidato String    @map("id_candidato") @db.Char(36)
+  candidato   Candidato @relation(fields: [idCandidato], references: [id])
+
+  @@index([idCandidato]) // Adiciona um índice não único para o campo idCandidato
+  @@map("idioma")
+}
+
+model Vaga {
+  id            String   @id @default(uuid()) @db.Char(36)
+  titulo        String   @db.VarChar(100)
+  descricao     String?  @db.Text
+  salario       Decimal  @db.Decimal(10, 2)
+  localizacao   String?  @db.VarChar(150)
+  modelo        String?  @db.VarChar(50)
+  dataExpiracao DateTime @map("data_expiracao")
+  statusVaga    String   @db.VarChar(50)
+
+  criadoEm     DateTime  @default(now())
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idRecrutador String     @map("id_recrutador") @db.Char(36)
+  recrutador   Recrutador @relation(fields: [idRecrutador], references: [id])
+
+  provas          Prova[]
+  vagasCandidatos VagaCandidato[]
+  requisito       Requisito[]
+
+  @@map("vaga")
+}
+
+model Requisito {
+  id        String @id @default(uuid()) @db.Char(36)
+  requisito String @db.VarChar(50)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idVaga String @map("id_vaga") @db.Char(36)
+  vaga   Vaga   @relation(fields: [idVaga], references: [id])
+
+  @@index([idVaga]) // Adiciona um índice não único para o campo idVaga
+  @@map("requisito")
+}
+
+model VagaCandidato {
+  id String @id @default(uuid()) @db.Char(36)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime?
+
+  idCandidato String    @map("id_candidato") @db.Char(36)
+  candidato   Candidato @relation(fields: [idCandidato], references: [id])
+
+  idVaga String @map("id_vaga") @db.Char(36)
+  vaga   Vaga   @relation(fields: [idVaga], references: [id])
+
+  @@map("vaga_candidato")
+}
+
+model Prova {
+  id            String    @id @default(uuid()) @db.Char(36)
+  titulo        String    @db.VarChar(100)
+  descricao     String?   @db.VarChar(255)
+  dataExpiracao DateTime? @map("data_expiracao")
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  duracao Int    @db.Int
+  idVaga  String @db.Char(36)
+  vaga    Vaga   @relation(fields: [idVaga], references: [id])
+
+  provaQuestoes    ProvaQuestao[]
+  QuestaoCandidato QuestaoCandidato[]
+
+  @@map("prova")
+}
+
+model Questao {
+  id               String  @id @default(uuid()) @db.Char(36)
+  enunciado        String  @db.Text
+  categoria        String  @db.VarChar(100) // Português, Matemática, Lógica, etc
+  tipo             String  @db.VarChar(50) // Dissertiva, Objetiva ou Code
+  dificuldade      String  @db.VarChar(50)
+  alternativa_a    String? @db.Text
+  alternativa_b    String? @db.Text
+  alternativa_c    String? @db.Text
+  alternativa_d    String? @db.Text
+  resposta_correta String? @db.Text
+  pontuacao        Float
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  provaQuestoes    ProvaQuestao[]
+  QuestaoCandidato QuestaoCandidato[]
+
+  @@map("questao")
+}
+
+model ProvaQuestao {
+  id String @id @default(uuid()) @db.Char(36)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  idProva String @db.Char(36)
+  prova   Prova  @relation(fields: [idProva], references: [id])
+
+  idQuestao String  @db.Char(36)
+  questao   Questao @relation(fields: [idQuestao], references: [id])
+
+  @@map("prova_questao")
+}
+
+model QuestaoCandidato {
+  id        String @id @default(uuid()) @db.Char(36)
+  resposta  String @db.Text
+  pontuacao Float
+
+  idProva     String @db.Char(36)
+  idQuestao   String @db.Char(36)
+  idCandidato String @db.Char(36)
+
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+  atualizadoEm DateTime  @updatedAt @map("atualizado_em")
+  apagadoEm    DateTime? @map("apagado_em")
+
+  prova     Prova     @relation(fields: [idProva], references: [id])
+  questao   Questao   @relation(fields: [idQuestao], references: [id])
+  candidato Candidato @relation(fields: [idCandidato], references: [id])
+
+  @@map("questao_candidato")
+}
