@@ -154,6 +154,147 @@
           }
         }
       }
+    },
+    "/systems/": {
+      "get": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Get all systems",
+        "description": "Fetch all systems from the database.",
+        "responses": {
+          "200": {
+            "description": "List of all systems in the database."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Create a system",
+        "description": "Create a system in the database.",
+        "parameters": [
+          {
+            "name": "system",
+            "in": "body",
+            "required": true,
+            "description": "System data.",
+            "schema": {
+              "$ref": "#/definitions/SystemCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "System created."
+          },
+          "400": {
+            "description": "Invalid data."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/systems/{id}": {
+      "get": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Get a system by ID",
+        "description": "Fetch a system from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System found."
+          },
+          "404": {
+            "description": "System not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Update a system",
+        "description": "Update a system in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          },
+          {
+            "name": "system",
+            "in": "body",
+            "required": true,
+            "description": "System data.",
+            "schema": {
+              "$ref": "#/definitions/SystemUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System updated."
+          },
+          "400": {
+            "description": "Invalid data."
+          },
+          "404": {
+            "description": "System not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Delete a system by ID",
+        "description": "Delete a system from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System deleted."
+          },
+          "404": {
+            "description": "System not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -162,7 +303,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "example": "ed2c2567-f6ea-489f-8094-26cee4d6b12d"
+          "example": "ce351be3-3e57-4caf-be49-fa871abeec33"
         },
         "name": {
           "type": "string",
@@ -184,6 +325,32 @@
         "description": {
           "type": "string",
           "example": "Description 1.1"
+        }
+      }
+    },
+    "SystemCreate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "90210fd5-734e-4e75-9a17-b4cceed18dcc"
+        },
+        "name": {
+          "type": "string",
+          "example": "System 1"
+        },
+        "version": {
+          "type": "string",
+          "example": "v1"
+        }
+      }
+    },
+    "SystemUpdate": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "example": "v1.1"
         }
       }
     }

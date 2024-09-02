@@ -20,6 +20,14 @@ const doc = {
       name: "Stat 1.1",
       description: "Description 1.1",
     },
+    SystemCreate: {
+      id: randomUUID(),
+      name: "System 1",
+      version: "v1",
+    },
+    SystemUpdate: {
+      version: "v1.1",
+    },
   },
 
   host: `${process.env.HOST}:${process.env.PORT}`,
