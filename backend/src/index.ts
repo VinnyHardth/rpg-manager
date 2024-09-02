@@ -7,9 +7,9 @@ import express from "express";
 import session from "express-session";
 import swaggerUi from "swagger-ui-express";
 
-import router from "./router/v1Router";
-import swaggerFile from "./swagger-output.json";
-import validarEnv from "./utils/validarEnv";
+import v1Router from "./router/v1Router";
+import swaggerFile from "./_swagger/swagger-output.json";
+// import validarEnv from "./utils/validarEnv";
 
 declare module "express-session" {
   interface SessionData {
@@ -18,7 +18,7 @@ declare module "express-session" {
 }
 
 dotenv.config();
-validarEnv();
+// validarEnv();
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -49,7 +49,7 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(router);
+app.use(v1Router);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
