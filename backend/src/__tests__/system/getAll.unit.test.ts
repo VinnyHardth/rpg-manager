@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 
-import StatController from "../../resources/stat/stat.controller";
-import StatServices from "../../resources/stat/stat.services";
+import SystemController from "../../resources/system/system.controller";
+import SystemServices from "../../resources/system/system.services";
 
-jest.mock("../../resources/stat/stat.services");
+jest.mock("../../resources/system/system.services");
 
-describe("StatController.getAll", () => {
+describe("SystemController.getAll", () => {
   let req: Partial<Request>;
   let res: Partial<Response>;
   let jsonMock: jest.Mock;
@@ -26,23 +26,23 @@ describe("StatController.getAll", () => {
 
   it("should return 200 and a list of stats", async () => {
     const mockStats = [{ id: 1, name: "stat1", description: "desc1" }];
-    (StatServices.getAll as jest.Mock).mockResolvedValue(mockStats);
+    (SystemServices.getAll as jest.Mock).mockResolvedValue(mockStats);
 
-    await StatController.getAll(req as Request, res as Response);
+    await SystemController.getAll(req as Request, res as Response);
 
-    expect(StatServices.getAll).toHaveBeenCalled();
+    expect(SystemServices.getAll).toHaveBeenCalled();
     expect(statusMock).toHaveBeenCalledWith(StatusCodes.OK);
     expect(jsonMock).toHaveBeenCalledWith(mockStats);
   });
 
   it("should return 500 if an error occurs", async () => {
-    (StatServices.getAll as jest.Mock).mockRejectedValue(
+    (SystemServices.getAll as jest.Mock).mockRejectedValue(
       new Error("Some error")
     );
 
-    await StatController.getAll(req as Request, res as Response);
+    await SystemController.getAll(req as Request, res as Response);
 
-    expect(StatServices.getAll).toHaveBeenCalled();
+    expect(SystemServices.getAll).toHaveBeenCalled();
     expect(statusMock).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(res.send).toHaveBeenCalledWith(ReasonPhrases.INTERNAL_SERVER_ERROR);
   });

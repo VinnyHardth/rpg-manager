@@ -12,7 +12,6 @@ const doc = {
 
   definitions: {
     StatCreate: {
-      id: randomUUID(),
       name: "Stat 1",
       description: "Description 1",
     },
@@ -21,19 +20,26 @@ const doc = {
       description: "Description 1.1",
     },
     SystemCreate: {
-      id: randomUUID(),
       name: "System 1",
       version: "v1",
     },
     SystemUpdate: {
       version: "v1.1",
     },
+    SystemStatCreate: {
+      systemId: randomUUID(),
+      statId: randomUUID(),
+    },
+    SystemStatUpdate: {
+      systemId: randomUUID(),
+      statId: randomUUID(),
+    },
   },
 
   host: `${process.env.HOST}:${process.env.PORT}`,
 };
 
-const outputFile = "./src/_swagger/swagger-output.json";
+const outputFile = "./src/__swagger__/swagger-output.json";
 const routes = ["./src/router/v1Router.ts"];
 
 swaggerAutogen()(outputFile, routes, doc);

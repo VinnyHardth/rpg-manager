@@ -295,16 +295,170 @@
           }
         }
       }
+    },
+    "/systemStats/{id}": {
+      "get": {
+        "tags": [
+          "System Stats"
+        ],
+        "summary": "Get a system stat by ID",
+        "description": "Fetch a system stat from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System stat ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System stat found."
+          },
+          "404": {
+            "description": "System stat not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "System Stats"
+        ],
+        "summary": "Update a system stat",
+        "description": "Update a system stat in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System stat ID."
+          },
+          {
+            "name": "systemStat",
+            "in": "body",
+            "description": "System stat data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SystemStatUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System stat updated."
+          },
+          "400": {
+            "description": "Invalid data."
+          },
+          "404": {
+            "description": "System stat not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "System Stats"
+        ],
+        "summary": "Delete a system stat by ID",
+        "description": "Delete a system stat from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System stat ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System stat deleted."
+          },
+          "404": {
+            "description": "System stat not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/systemStats/system/{id}": {
+      "get": {
+        "tags": [
+          "System Stats"
+        ],
+        "summary": "Get system stats by system ID",
+        "description": "Fetch system stats from the database by system ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System stats found."
+          },
+          "404": {
+            "description": "System stats not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/systemStats/": {
+      "post": {
+        "tags": [
+          "System Stats"
+        ],
+        "summary": "Create a system stat",
+        "description": "Create a system stat in the database.",
+        "parameters": [
+          {
+            "name": "systemStat",
+            "in": "body",
+            "description": "System stat data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SystemStatCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "System stat created."
+          },
+          "400": {
+            "description": "Invalid data."
+          },
+          "409": {
+            "description": "System stat already exists."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
     }
   },
   "definitions": {
     "StatCreate": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "example": "ce351be3-3e57-4caf-be49-fa871abeec33"
-        },
         "name": {
           "type": "string",
           "example": "Stat 1"
@@ -331,10 +485,6 @@
     "SystemCreate": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "example": "90210fd5-734e-4e75-9a17-b4cceed18dcc"
-        },
         "name": {
           "type": "string",
           "example": "System 1"
@@ -351,6 +501,32 @@
         "version": {
           "type": "string",
           "example": "v1.1"
+        }
+      }
+    },
+    "SystemStatCreate": {
+      "type": "object",
+      "properties": {
+        "systemId": {
+          "type": "string",
+          "example": "fe80ccc8-db47-45e9-becc-d32f2da4251e"
+        },
+        "statId": {
+          "type": "string",
+          "example": "3b9239c2-c26f-4a96-bb17-ff257fa37865"
+        }
+      }
+    },
+    "SystemStatUpdate": {
+      "type": "object",
+      "properties": {
+        "systemId": {
+          "type": "string",
+          "example": "36230071-5f75-4734-9afb-5574064cb857"
+        },
+        "statId": {
+          "type": "string",
+          "example": "752482f0-0aa5-4d12-af9d-d4c5beb04ee7"
         }
       }
     }
