@@ -42,12 +42,11 @@ model System {
 model Stat {
   id String @id @default(uuid())
 
-  name        String
-  description String
+  name        String @db.VarChar(50)
+  description String @db.Text
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   SystemStat             SystemStat[]
   CharacterPrimaryStat   CharacterPrimaryStat[]
