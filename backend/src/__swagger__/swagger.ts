@@ -46,6 +46,16 @@ const doc = {
       userId: randomUUID(),
       systemId: randomUUID(),
     },
+    UserInCampaignCreate: {
+      userId: randomUUID(),
+      campaignId: randomUUID(),
+      role: "player",
+    },
+    UserInCampaignUpdate: {
+      userId: randomUUID(),
+      campaignId: randomUUID(),
+      role: "master",
+    },
   },
 
   host: `${process.env.HOST}:${process.env.PORT}`,
