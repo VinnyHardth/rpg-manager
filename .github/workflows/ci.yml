@@ -17,9 +17,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            **/node_modules
-            **/frontend/node_modules
-            **/backend/node_modules
+            backend/node_modules
+            frontend/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -29,7 +28,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install backend and frontend dependencies
+      - name: Install dependencies
         run: |
           cd backend && npm ci
           cd ../frontend && npm ci
@@ -58,12 +57,23 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install backend and frontend dependencies
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            backend/node_modules
+            frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
         run: |
           cd backend && npm ci
           cd ../frontend && npm ci
 
-      - name: Run backend and frontend tests in parallel
+      - name: Run backend and frontend tests
         run: |
           cd backend && npm test &
           cd ../frontend && npm test
+          wait
