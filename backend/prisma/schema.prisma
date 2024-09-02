@@ -27,12 +27,11 @@ model User {
 model System {
   id String @id @default(uuid())
 
-  name    String
-  version String
+  name    String @unique @db.VarChar(50)
+  version String @db.VarChar(10)
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   Campaign   Campaign[]
   Character  Character[]
