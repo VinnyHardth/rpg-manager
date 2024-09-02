@@ -70,6 +70,9 @@ jobs:
         run: |
           npm ci
 
+      - name: Run prisma generate
+        run: cd backend && npx prisma generate
+
       - name: Run backend and frontend tests
         run: |
           npm run test
