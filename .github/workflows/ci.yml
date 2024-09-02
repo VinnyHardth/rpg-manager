@@ -30,8 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd backend && npm ci
-          cd ../frontend && npm ci
+          npm ci
 
       - name: Run prisma generate
         run: cd backend && npx prisma generate
