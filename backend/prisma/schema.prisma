@@ -94,6 +94,8 @@ model UserInCampaign {
   campaignId String   @map("campaign_id")
   campaign   Campaign @relation(fields: [campaignId], references: [id])
 
+  role String @db.VarChar(50)
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
