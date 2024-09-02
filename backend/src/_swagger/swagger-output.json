@@ -1,0 +1,358 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/stats/": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get all stats",
+        "description": "Fetch all stats from the database.",
+        "responses": {
+          "200": {
+            "description": "List of all stats in the database."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Create a new stat",
+        "description": "Create a new stat in the database.",
+        "parameters": [
+          {
+            "name": "newStat",
+            "in": "body",
+            "description": "The stat to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Stat created."
+          },
+          "409": {
+            "description": "Stat already exists."
+          },
+          "422": {
+            "description": "Unprocessable entity."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/stats/{id}": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get a stat by ID",
+        "description": "Fetch a stat from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Stat ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stat found."
+          },
+          "404": {
+            "description": "Stat not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Update a stat by ID",
+        "description": "Update a stat in the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Stat ID."
+          },
+          {
+            "name": " ",
+            "in": "body",
+            "description": "The   stat.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stat updated."
+          },
+          "404": {
+            "description": "Stat not found."
+          },
+          "422": {
+            "description": "Unprocessable entity."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Delete a stat by ID",
+        "description": "Delete a stat from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Stat ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stat deleted."
+          },
+          "404": {
+            "description": "Stat not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/systems/": {
+      "get": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Get all systems",
+        "description": "Fetch all systems from the database.",
+        "responses": {
+          "200": {
+            "description": "List of all systems in the database."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Create a system",
+        "description": "Create a system in the database.",
+        "parameters": [
+          {
+            "name": "system",
+            "in": "body",
+            "required": true,
+            "description": "System data.",
+            "schema": {
+              "$ref": "#/definitions/SystemCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "System created."
+          },
+          "400": {
+            "description": "Invalid data."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/systems/{id}": {
+      "get": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Get a system by ID",
+        "description": "Fetch a system from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System found."
+          },
+          "404": {
+            "description": "System not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Update a system",
+        "description": "Update a system in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          },
+          {
+            "name": "system",
+            "in": "body",
+            "required": true,
+            "description": "System data.",
+            "schema": {
+              "$ref": "#/definitions/SystemUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System updated."
+          },
+          "400": {
+            "description": "Invalid data."
+          },
+          "404": {
+            "description": "System not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Systems"
+        ],
+        "summary": "Delete a system by ID",
+        "description": "Delete a system from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System deleted."
+          },
+          "404": {
+            "description": "System not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "StatCreate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "ce351be3-3e57-4caf-be49-fa871abeec33"
+        },
+        "name": {
+          "type": "string",
+          "example": "Stat 1"
+        },
+        "description": {
+          "type": "string",
+          "example": "Description 1"
+        }
+      }
+    },
+    "StatUpdate": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Stat 1.1"
+        },
+        "description": {
+          "type": "string",
+          "example": "Description 1.1"
+        }
+      }
+    },
+    "SystemCreate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "90210fd5-734e-4e75-9a17-b4cceed18dcc"
+        },
+        "name": {
+          "type": "string",
+          "example": "System 1"
+        },
+        "version": {
+          "type": "string",
+          "example": "v1"
+        }
+      }
+    },
+    "SystemUpdate": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "example": "v1.1"
+        }
+      }
+    }
+  }
+}
