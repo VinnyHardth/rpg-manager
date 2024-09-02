@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "seed": "ts-node prisma/seed.ts",
-    "swagger": "ts-node src/_swagger/swagger.ts"
+    "swagger": "ts-node src/__swagger__/swagger.ts"
   },
   "author": "",
   "license": "ISC",

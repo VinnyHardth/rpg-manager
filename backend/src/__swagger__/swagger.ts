@@ -33,7 +33,7 @@ const doc = {
   host: `${process.env.HOST}:${process.env.PORT}`,
 };
 
-const outputFile = "./src/_swagger/swagger-output.json";
+const outputFile = "./src/__swagger__/swagger-output.json";
 const routes = ["./src/router/v1Router.ts"];
 
 swaggerAutogen()(outputFile, routes, doc);

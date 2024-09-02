@@ -303,7 +303,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "example": "ce351be3-3e57-4caf-be49-fa871abeec33"
+          "example": "ad74b31f-cde2-42de-849b-276cd8c05240"
         },
         "name": {
           "type": "string",
@@ -333,7 +333,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "example": "90210fd5-734e-4e75-9a17-b4cceed18dcc"
+          "example": "e0c47fa1-2a31-46c0-8f3b-3706b5977960"
         },
         "name": {
           "type": "string",

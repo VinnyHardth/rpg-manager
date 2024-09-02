@@ -8,7 +8,7 @@ import session from "express-session";
 import swaggerUi from "swagger-ui-express";
 
 import v1Router from "./router/v1Router";
-import swaggerFile from "./_swagger/swagger-output.json";
+import swaggerFile from "./__swagger__/swagger-output.json";
 // import validarEnv from "./utils/validarEnv";
 
 declare module "express-session" {
