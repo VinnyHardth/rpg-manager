@@ -83,8 +83,6 @@ const create = async (req: Request, res: Response): Promise<void> => {
     res.status(StatusCodes.CREATED).json(system);
   } catch (error) {
     if (error instanceof Error) {
-      console.error("Error creating system:", error);
-
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === "P2002"
