@@ -75,5 +75,14 @@ jobs:
 
       - name: Run backend and frontend tests
         run: |
-          npm run test
+          npm run test --coverage
           wait
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: __coverage__/*
+          flags: backend, frontend
+          name: backend-and-frontend-coverage
+          fail_ci_if_error: true
