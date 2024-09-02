@@ -1,8 +1,8 @@
+import { Prisma } from "@prisma/client";
 import { Request, Response } from "express";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 import StatServices from "./stat.services";
-import { Prisma } from "@prisma/client";
 
 // read methods ---------------------------------------------------------------
 const getAll = async (req: Request, res: Response): Promise<void> => {
@@ -88,11 +88,9 @@ const create = async (req: Request, res: Response): Promise<void> => {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === "P2002"
       ) {
-        // Unique constraint violation
+        // Unique constraint failed
         res.status(StatusCodes.CONFLICT).send(ReasonPhrases.CONFLICT);
       } else {
-        // Handle other types of errors
-        console.error("Error creating stat:", error);
         res
           .status(StatusCodes.INTERNAL_SERVER_ERROR)
           .send(ReasonPhrases.INTERNAL_SERVER_ERROR);

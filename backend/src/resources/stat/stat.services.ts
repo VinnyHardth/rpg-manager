@@ -1,4 +1,4 @@
-import { PrismaClient, Stat } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 import { CreateStatDTO, UpdateStatDTO, StatDTO } from "./stat.types";
 
