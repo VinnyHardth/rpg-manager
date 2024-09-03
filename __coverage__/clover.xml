@@ -1,7 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1725300280984" clover="3.2.0">
-  <project timestamp="1725300280984" name="All files">
-    <metrics statements="166" coveredstatements="149" conditionals="34" coveredconditionals="32" methods="31" coveredmethods="15" elements="231" coveredelements="196" complexity="0" loc="166" ncloc="166" packages="3" files="6" classes="6"/>
+<coverage generated="1725320769923" clover="3.2.0">
+  <project timestamp="1725320769923" name="All files">
+    <metrics statements="310" coveredstatements="278" conditionals="56" coveredconditionals="54" methods="58" coveredmethods="28" elements="424" coveredelements="360" complexity="0" loc="310" ncloc="310" packages="5" files="10" classes="10"/>
+    <package name="campaign">
+      <metrics statements="72" coveredstatements="65" conditionals="10" coveredconditionals="10" methods="14" coveredmethods="7"/>
+      <file name="campaign.controller.ts" path="/home/vinicius/repos/Personal/rpg-manager/backend/src/resources/campaign/campaign.controller.ts">
+        <metrics statements="57" coveredstatements="57" conditionals="10" coveredconditionals="10" methods="7" coveredmethods="7"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="50" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="61" count="7" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="80" count="3" type="stmt"/>
+        <line num="81" count="3" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="84" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="95" count="7" type="stmt"/>
+        <line num="112" count="3" type="stmt"/>
+        <line num="114" count="3" type="stmt"/>
+        <line num="115" count="3" type="stmt"/>
+        <line num="116" count="2" type="stmt"/>
+        <line num="118" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
+        <line num="123" count="1" type="stmt"/>
+        <line num="130" count="7" type="stmt"/>
+        <line num="148" count="2" type="stmt"/>
+        <line num="150" count="2" type="stmt"/>
+        <line num="151" count="2" type="stmt"/>
+        <line num="152" count="1" type="stmt"/>
+        <line num="154" count="1" type="stmt"/>
+        <line num="160" count="7" type="stmt"/>
+        <line num="186" count="3" type="stmt"/>
+        <line num="187" count="3" type="stmt"/>
+        <line num="189" count="3" type="stmt"/>
+        <line num="190" count="3" type="stmt"/>
+        <line num="191" count="2" type="stmt"/>
+        <line num="193" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="194" count="1" type="stmt"/>
+        <line num="195" count="1" type="stmt"/>
+        <line num="198" count="1" type="stmt"/>
+        <line num="205" count="7" type="stmt"/>
+        <line num="222" count="3" type="stmt"/>
+        <line num="224" count="3" type="stmt"/>
+        <line num="225" count="3" type="stmt"/>
+        <line num="226" count="2" type="stmt"/>
+        <line num="228" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="229" count="1" type="stmt"/>
+        <line num="230" count="1" type="stmt"/>
+        <line num="233" count="1" type="stmt"/>
+      </file>
+      <file name="campaign.services.ts" path="/home/vinicius/repos/Personal/rpg-manager/backend/src/resources/campaign/campaign.services.ts">
+        <metrics statements="15" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="7" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="41" count="7" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+    </package>
     <package name="stat">
       <metrics statements="51" coveredstatements="46" conditionals="12" coveredconditionals="11" methods="10" coveredmethods="5"/>
       <file name="stat.controller.ts" path="/home/vinicius/repos/Personal/rpg-manager/backend/src/resources/stat/stat.controller.ts">
@@ -193,6 +274,87 @@
         <line num="38" count="5" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="userInCampaign">
+      <metrics statements="72" coveredstatements="64" conditionals="12" coveredconditionals="12" methods="13" coveredmethods="6"/>
+      <file name="userInCampaign.controller.ts" path="/home/vinicius/repos/Personal/rpg-manager/backend/src/resources/userInCampaign/userInCampaign.controller.ts">
+        <metrics statements="56" coveredstatements="56" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="30" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="64" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="75" count="6" type="stmt"/>
+        <line num="92" count="3" type="stmt"/>
+        <line num="94" count="3" type="stmt"/>
+        <line num="95" count="3" type="stmt"/>
+        <line num="96" count="2" type="stmt"/>
+        <line num="98" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="100" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="110" count="6" type="stmt"/>
+        <line num="128" count="3" type="stmt"/>
+        <line num="130" count="3" type="stmt"/>
+        <line num="132" count="3" type="stmt"/>
+        <line num="137" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="138" count="1" type="stmt"/>
+        <line num="139" count="1" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="143" count="1" type="stmt"/>
+        <line num="145" count="1" type="stmt"/>
+        <line num="151" count="6" type="stmt"/>
+        <line num="177" count="3" type="stmt"/>
+        <line num="178" count="3" type="stmt"/>
+        <line num="180" count="3" type="stmt"/>
+        <line num="181" count="3" type="stmt"/>
+        <line num="182" count="2" type="stmt"/>
+        <line num="184" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="185" count="1" type="stmt"/>
+        <line num="186" count="1" type="stmt"/>
+        <line num="189" count="1" type="stmt"/>
+        <line num="196" count="6" type="stmt"/>
+        <line num="213" count="3" type="stmt"/>
+        <line num="215" count="3" type="stmt"/>
+        <line num="216" count="3" type="stmt"/>
+        <line num="217" count="2" type="stmt"/>
+        <line num="219" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="220" count="1" type="stmt"/>
+        <line num="221" count="1" type="stmt"/>
+        <line num="224" count="1" type="stmt"/>
+      </file>
+      <file name="userInCampaign.services.ts" path="/home/vinicius/repos/Personal/rpg-manager/backend/src/resources/userInCampaign/userInCampaign.services.ts">
+        <metrics statements="16" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
       </file>
     </package>
   </project>

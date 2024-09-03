@@ -41,7 +41,7 @@ model System {
 model Stat {
   id String @id @default(uuid())
 
-  name        String @db.VarChar(50)
+  name        String @unique @db.VarChar(50)
   description String @db.Text
 
   createdAt DateTime @default(now())
@@ -75,7 +75,8 @@ model Campaign {
   systemId String @map("system_id")
   system   System @relation(fields: [systemId], references: [id])
 
-  name String
+  name        String @db.VarChar(100)
+  description String @db.Text
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -92,6 +93,8 @@ model UserInCampaign {
 
   campaignId String   @map("campaign_id")
   campaign   Campaign @relation(fields: [campaignId], references: [id])
+
+  role String @db.VarChar(50)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

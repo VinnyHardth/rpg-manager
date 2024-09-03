@@ -453,6 +453,389 @@
           }
         }
       }
+    },
+    "/campaigns/": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get all campaigns",
+        "description": "Fetch all campaigns from the database.",
+        "responses": {
+          "200": {
+            "description": "List of all campaigns in the database."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Create a campaign",
+        "description": "Add a new campaign to the database.",
+        "parameters": [
+          {
+            "name": "campaign",
+            "in": "body",
+            "description": "Campaign data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CampaignCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Campaign created."
+          },
+          "422": {
+            "description": "Unprocessable entity."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/campaigns/{id}": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get a campaign by ID",
+        "description": "Fetch a campaign from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Campaign ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign found."
+          },
+          "404": {
+            "description": "Campaign not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Update a campaign",
+        "description": "Modify a campaign in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Campaign ID."
+          },
+          {
+            "name": "campaign",
+            "in": "body",
+            "description": "New campaign data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CampaignUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign updated."
+          },
+          "404": {
+            "description": "Campaign not found."
+          },
+          "422": {
+            "description": "Unprocessable entity."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Delete a campaign",
+        "description": "Remove a campaign from the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Campaign ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign deleted."
+          },
+          "404": {
+            "description": "Campaign not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/campaigns/user/{userId}": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get all campaigns by user ID",
+        "description": "Fetch all campaigns from the database by user ID.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of campaigns found."
+          },
+          "404": {
+            "description": "Campaigns not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/campaigns/system/{systemId}": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get all campaigns by system ID",
+        "description": "Fetch all campaigns from the database by system ID.",
+        "parameters": [
+          {
+            "name": "systemId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "System ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of campaigns found."
+          },
+          "404": {
+            "description": "Campaigns not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/usersInCampaign/{id}": {
+      "get": {
+        "tags": [
+          "Users in Campaign"
+        ],
+        "summary": "Get a user in campaign by ID",
+        "description": "Fetch a user in campaign from the database by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User in campaign ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User in campaign found."
+          },
+          "404": {
+            "description": "User in campaign not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users in Campaign"
+        ],
+        "summary": "Update a user in campaign",
+        "description": "Update a user in campaign in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User in campaign ID."
+          },
+          {
+            "name": "userInCampaign",
+            "in": "body",
+            "description": "User in campaign data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserInCampaignUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User in campaign updated."
+          },
+          "404": {
+            "description": "User in campaign not found."
+          },
+          "422": {
+            "description": "Unprocessable entity."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users in Campaign"
+        ],
+        "summary": "Delete a user in campaign",
+        "description": "Delete a user in campaign from the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User in campaign ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User in campaign deleted."
+          },
+          "404": {
+            "description": "User in campaign not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/usersInCampaign/user/{id}": {
+      "get": {
+        "tags": [
+          "Users in Campaign"
+        ],
+        "summary": "Get campaigns by user ID",
+        "description": "Fetch campaigns from the database by user ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaigns found."
+          },
+          "404": {
+            "description": "Campaigns not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/usersInCampaign/campaign/{id}": {
+      "get": {
+        "tags": [
+          "Users in Campaign"
+        ],
+        "summary": "Get users in campaign by campaign ID",
+        "description": "Fetch users in campaign from the database by campaign ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Campaign ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users in campaign found."
+          },
+          "404": {
+            "description": "Users in campaign not found."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/usersInCampaign/": {
+      "post": {
+        "tags": [
+          "Users in Campaign"
+        ],
+        "summary": "Create a user in campaign",
+        "description": "Create a user in campaign in the database.",
+        "parameters": [
+          {
+            "name": "userInCampaign",
+            "in": "body",
+            "description": "User in campaign data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserInCampaignCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User in campaign created."
+          },
+          "422": {
+            "description": "Unprocessable entity."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -509,11 +892,11 @@
       "properties": {
         "systemId": {
           "type": "string",
-          "example": "fe80ccc8-db47-45e9-becc-d32f2da4251e"
+          "example": "542995bb-d5ae-4df4-adc6-5c7135f2467e"
         },
         "statId": {
           "type": "string",
-          "example": "3b9239c2-c26f-4a96-bb17-ff257fa37865"
+          "example": "9161ee4b-897b-400c-8313-1385320461b7"
         }
       }
     },
@@ -522,11 +905,87 @@
       "properties": {
         "systemId": {
           "type": "string",
-          "example": "36230071-5f75-4734-9afb-5574064cb857"
+          "example": "e13f1b3e-741c-438f-a925-9126248b2d76"
         },
         "statId": {
           "type": "string",
-          "example": "752482f0-0aa5-4d12-af9d-d4c5beb04ee7"
+          "example": "37d3e65f-cbe6-42cb-b49c-4e98b56a669a"
+        }
+      }
+    },
+    "CampaignCreate": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Campaign 1"
+        },
+        "description": {
+          "type": "string",
+          "example": "Description 1"
+        },
+        "userId": {
+          "type": "string",
+          "example": "af966dfb-8598-4816-bc31-e0a445c5d307"
+        },
+        "systemId": {
+          "type": "string",
+          "example": "abc40ee3-42b5-40bf-af59-2b30ef129c09"
+        }
+      }
+    },
+    "CampaignUpdate": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Campaign 1.1"
+        },
+        "description": {
+          "type": "string",
+          "example": "Description 1.1"
+        },
+        "userId": {
+          "type": "string",
+          "example": "9026254a-9213-4ae3-9b22-f02d82056e0a"
+        },
+        "systemId": {
+          "type": "string",
+          "example": "064d53c0-042a-4cf0-844d-e969d5606b55"
+        }
+      }
+    },
+    "UserInCampaignCreate": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "2317b29b-9827-48a0-b32b-e2d583c52ddb"
+        },
+        "campaignId": {
+          "type": "string",
+          "example": "42635ed1-99ea-44c0-963d-9fad44191286"
+        },
+        "role": {
+          "type": "string",
+          "example": "player"
+        }
+      }
+    },
+    "UserInCampaignUpdate": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "db75faec-5111-44d5-b843-4ebce30d961b"
+        },
+        "campaignId": {
+          "type": "string",
+          "example": "4df17bd9-88ab-4d6d-8385-874c1ce4d177"
+        },
+        "role": {
+          "type": "string",
+          "example": "master"
         }
       }
     }
