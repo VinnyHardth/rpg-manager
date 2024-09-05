@@ -19,6 +19,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import theme from "@src/theme/theme";
 
+import CustomDrawer from "@src/components/Drawer/CustomDrawer";
+
 const secondaryColor = theme.palette.secondary.main;
 
 const Search = styled("div")(({ theme }) => ({
@@ -64,6 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -85,6 +88,10 @@ export default function PrimarySearchAppBar() {
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const toggleDrawer = (open: boolean) => () => {
+    setDrawerOpen(open);
   };
 
   const menuId = "primary-search-account-menu";
@@ -166,13 +173,17 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
+      >
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             sx={{ color: secondaryColor, mr: 2 }}
             aria-label="open drawer"
+            onClick={toggleDrawer(true)}
           >
             <MenuIcon sx={{ color: secondaryColor }} />
           </IconButton>
@@ -240,6 +251,7 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <CustomDrawer open={drawerOpen} onClose={toggleDrawer(false)} />
     </Box>
   );
 }

@@ -22,7 +22,7 @@ const theme = createTheme({
     },
     background: {
       default: "#FFFFFF", // White
-      paper: "#E5E5E5", // Platinum
+      paper: "#240046", // Dark Purple
     },
     text: {
       primary: "#FFFFFF", // White
