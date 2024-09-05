@@ -1,13 +1,16 @@
-import { CssBaseline } from "@mui/material";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { ThemeProvider } from "@mui/material/styles";
 import type { Metadata } from "next";
 
-import theme from "./theme/theme";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
+import PrimarySearchAppBar from "@src/components/AppBar/AppBar";
+
+import theme from "@src/theme/theme";
 
 export const metadata: Metadata = {
-  title: "OptiHire",
-  description: "Uma plataforma intuitiva para seleção de candidatos.",
+  title: "rpg-manager",
+  description: "A simple RPG manager",
 };
 
 export default function RootLayout({
@@ -20,8 +23,8 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <PrimarySearchAppBar />
             <CssBaseline />
-
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>

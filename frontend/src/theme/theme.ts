@@ -12,10 +12,10 @@ const rubik = Rubik({
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#14213D", // Oxford Blue
+      main: "#240046", // Dark Purple
     },
     secondary: {
-      main: "#FCA311", // Orange
+      main: "#FFFFFF", // white
     },
     error: {
       main: "#FF0000", // Red
@@ -25,7 +25,7 @@ const theme = createTheme({
       paper: "#E5E5E5", // Platinum
     },
     text: {
-      primary: "#14213D", // Oxford Blue
+      primary: "#FFFFFF", // White
       secondary: "#000000", // Black
     },
   },
