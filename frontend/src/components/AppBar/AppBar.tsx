@@ -22,6 +22,7 @@ import theme from "@src/theme/theme";
 import CustomDrawer from "@src/components/Drawer/CustomDrawer";
 
 const secondaryColor = theme.palette.secondary.main;
+const lighterPrimaryColor = theme.palette.primary.light;
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -181,7 +182,11 @@ export default function PrimarySearchAppBar() {
           <IconButton
             size="large"
             edge="start"
-            sx={{ color: secondaryColor, mr: 2 }}
+            sx={{
+              color: secondaryColor,
+              mr: 2,
+              backgroundColor: drawerOpen ? lighterPrimaryColor : "transparent",
+            }}
             aria-label="open drawer"
             onClick={toggleDrawer(true)}
           >

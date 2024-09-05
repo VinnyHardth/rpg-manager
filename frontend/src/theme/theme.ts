@@ -13,6 +13,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#240046", // Dark Purple
+      light: "#6930C3", // Light Purple
     },
     secondary: {
       main: "#FFFFFF", // white
@@ -21,7 +22,7 @@ const theme = createTheme({
       main: "#FF0000", // Red
     },
     background: {
-      default: "#FFFFFF", // White
+      default: "#14192B", // Light Purple
       paper: "#240046", // Dark Purple
     },
     text: {

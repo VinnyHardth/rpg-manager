@@ -1,13 +1,14 @@
 "use client";
+import * as React from "react";
+import CardList from "@src/components/CardList/CardList";
+import { cardData } from "@src/mocks/campaign.mocs";
 
-import Button from "@src/components/Button";
-
-export default function Home() {
+const App = () => {
   return (
-    <>
-      <h1>Home</h1>
-      <p>Welcome to the home page!</p>
-      <Button label="Click me" onClick={() => console.log("Button clicked!")} />
-    </>
+    <div>
+      <CardList cards={cardData} />
+    </div>
   );
-}
+};
+
+export default App;
