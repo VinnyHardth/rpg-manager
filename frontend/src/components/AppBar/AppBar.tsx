@@ -19,7 +19,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import theme from "@src/theme/theme";
 
-import CustomDrawer from "@src/components/Drawer/CustomDrawer";
+import CustomDrawer from "@src/components/Drawer/SideBar";
 
 const secondaryColor = theme.palette.secondary.main;
 const lighterPrimaryColor = theme.palette.primary.light;

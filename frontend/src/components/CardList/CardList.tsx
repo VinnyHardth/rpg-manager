@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, Link } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
+import CardSkeleton from "../Card/CardSkeleton";
 
 interface CardData {
   id: number;
@@ -14,6 +15,7 @@ interface CardData {
 
 interface CardListProps {
   cards: CardData[];
+  loading: boolean;
 }
 
 const Banner = styled("img")(({ theme }) => ({
@@ -48,37 +50,51 @@ const CardContainer = styled(Card)(({ theme }) => ({
   position: "relative", // Necessário para o posicionamento do ProfileIcon
 }));
 
-const CardList = ({ cards }: CardListProps) => {
+const CardList = ({ cards, loading }: CardListProps) => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-      {cards.map((card) => (
-        <CardContainer key={card.id}>
-          <Banner
-            src={card.bannerUrl} // URL da imagem do banner
-            alt={`${card.name} Banner`} // Texto alternativo para acessibilidade
-          />
-          <CardContent>
-            <ProfileIcon>
-              <Image
-                src={"/assets/images/image.png"}
-                alt={`${card.name} Icon`}
-                width={60}
-                height={60}
+      {loading ? (
+        // Exibir skeletons se estiver carregando
+        <>
+          {[...Array(15)].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </>
+      ) : (
+        cards.map((card) => (
+          <Link key={card.id} href={`/campaign/${card.id}`}>
+            <CardContainer key={card.id}>
+              <Banner
+                src={card.bannerUrl} // URL da imagem do banner
+                alt={`${card.name} Banner`} // Texto alternativo para acessibilidade
+                height={140} // Altura do banner
+                width={345} // Largura do banner
               />
-            </ProfileIcon>
+              <CardContent>
+                <ProfileIcon>
+                  <Image
+                    src={card.iconUrl}
+                    alt={`${card.name} Icon`}
+                    width={60}
+                    height={60}
+                    priority
+                  />
+                </ProfileIcon>
 
-            <Typography variant="h6" component="div">
-              {card.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {card.description}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {card.system}
-            </Typography>
-          </CardContent>
-        </CardContainer>
-      ))}
+                <Typography variant="h6" component="div">
+                  {card.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {card.description}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {card.system}
+                </Typography>
+              </CardContent>
+            </CardContainer>
+          </Link>
+        ))
+      )}
     </Box>
   );
 };

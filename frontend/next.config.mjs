@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ['placehold.co'], // Adicione o domínio da imagem aqui
+    domains: ['placehold.jp'], // Adiciona o domínio da imagem aqui
   },
 };
 
