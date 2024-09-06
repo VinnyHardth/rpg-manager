@@ -28,11 +28,13 @@ const fadeIn = keyframes`
   }
 `;
 
-const Banner = styled("img")(({ theme }) => ({
+const BannerContainer = styled("div")({
   width: "100%",
   height: 140,
-  objectFit: "cover",
-}));
+  position: "relative",
+  overflow: "hidden",
+  borderRadius: 8,
+});
 
 const ProfileIcon = styled("div")(({ theme }) => ({
   width: 60,
@@ -47,11 +49,6 @@ const ProfileIcon = styled("div")(({ theme }) => ({
   left: 10,
   border: `3px solid ${theme.palette.background.paper}`,
   backgroundColor: theme.palette.background.default,
-  "& img": {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
 }));
 
 const CardContainer = styled(Card)(({ theme }) => ({
@@ -76,12 +73,16 @@ const CardList = ({ cards, loading }: CardListProps) => {
         cards.map((card) => (
           <CardContainer key={card.id}>
             <Link href={`/campaign/${card.id}`}>
-              <Banner
-                src={card.bannerUrl}
-                alt={`${card.name} Banner`}
-                height={140}
-                width={345}
-              />
+              <BannerContainer>
+                <Image
+                  src={card.bannerUrl}
+                  alt={`${card.name} Banner`}
+                  fill // Preenche o contêiner
+                  style={{ objectFit: "cover" }} // Ajusta a imagem para cobrir o contêiner
+                  sizes="(max-width: 600px) 100vw, 50vw" // Ajuste o tamanho da imagem com base na tela
+                  priority
+                />
+              </BannerContainer>
               <CardContent>
                 <ProfileIcon>
                   <Image
