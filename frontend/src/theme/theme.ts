@@ -16,7 +16,7 @@ const theme = createTheme({
       light: "#6930C3", // Light Purple
     },
     secondary: {
-      main: "#FFFFFF", // white
+      main: "#6930C3", // white
     },
     error: {
       main: "#FF0000", // Red

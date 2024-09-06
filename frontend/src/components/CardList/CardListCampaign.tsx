@@ -33,7 +33,7 @@ const BannerContainer = styled("div")({
   height: 140,
   position: "relative",
   overflow: "hidden",
-  borderRadius: 8,
+  borderRadius: 0,
 });
 
 const ProfileIcon = styled("div")(({ theme }) => ({

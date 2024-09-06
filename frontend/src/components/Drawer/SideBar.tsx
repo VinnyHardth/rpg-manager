@@ -33,7 +33,7 @@ export default function CustomDrawer({ open, onClose }: DrawerProps) {
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton sx={{ color: theme.palette.secondary.main }}>
+            <ListItemButton sx={{ color: theme.palette.text.primary }}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
@@ -46,7 +46,7 @@ export default function CustomDrawer({ open, onClose }: DrawerProps) {
       <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton sx={{ color: theme.palette.secondary.main }}>
+            <ListItemButton sx={{ color: theme.palette.text.primary }}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>

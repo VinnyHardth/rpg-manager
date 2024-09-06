@@ -41,11 +41,12 @@ export const cardData = [
   },
   {
     id: 6,
-    name: "Nome 6",
-    description: "Descrição 6",
+    name: "Um nome muito grande pq eu sou um fudido",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     system: "Sistema 6",
-    bannerUrl: "https://placehold.jp/635x140.png",
-    iconUrl: "https://placehold.jp/60x60.png",
+    bannerUrl: "https://placehold.jp/1920x1080.png",
+    iconUrl: "https://placehold.jp/120x120.png",
   },
   {
     id: 7,

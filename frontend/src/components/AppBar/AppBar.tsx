@@ -20,7 +20,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import theme from "@src/theme/theme";
 import CustomDrawer from "@src/components/Drawer/SideBar";
 
-const secondaryColor = theme.palette.secondary.main;
+const secondaryColor = theme.palette.text.primary;
 const lighterPrimaryColor = theme.palette.primary.light;
 
 const Search = styled("div")(({ theme }) => ({
