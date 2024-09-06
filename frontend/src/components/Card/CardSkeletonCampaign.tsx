@@ -16,8 +16,8 @@ const ProfileIconSkeleton = styled(Skeleton)(({ theme }) => ({
 }));
 
 const CardContainer = styled(Card)(({ theme }) => ({
-  maxWidth: 345,
-  minWidth: 345,
+  maxWidth: 635,
+  minWidth: 635,
   minHeight: 248,
   margin: theme.spacing(2),
   position: "relative",

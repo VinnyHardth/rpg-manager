@@ -72,9 +72,9 @@ export default function CustomDrawer({ open, onClose }: DrawerProps) {
       }}
       ModalProps={{
         BackdropProps: {
-          style: {
-            backgroundColor: "transparent", // Remove o escurecimento do fundo
-          },
+          // style: {
+          //   backgroundColor: "transparent", // Remove o escurecimento do fundo
+          // },
         },
       }}
     >

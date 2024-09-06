@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import CardList from "@src/components/CardList/CardList";
+import CardList from "@src/components/CardList/CardListCampaign";
 import { Box } from "@mui/material";
 
 import { cardData } from "@src/mocks/campaign.mocks";

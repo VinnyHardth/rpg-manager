@@ -2,7 +2,8 @@ import * as React from "react";
 import { Card, CardContent, Typography, Box, Link } from "@mui/material";
 import { styled, keyframes } from "@mui/material/styles";
 import Image from "next/image";
-import CardSkeleton from "../Card/CardSkeleton";
+import CardSkeleton from "../Card/CardSkeletonCampaign";
+import theme from "@src/theme/theme";
 
 interface CardData {
   id: number;
@@ -54,7 +55,8 @@ const ProfileIcon = styled("div")(({ theme }) => ({
 }));
 
 const CardContainer = styled(Card)(({ theme }) => ({
-  maxWidth: 345,
+  maxWidth: 635,
+  minWidth: 635,
   margin: theme.spacing(2),
   position: "relative",
   opacity: 0, // Inicialmente invisível
@@ -66,7 +68,7 @@ const CardList = ({ cards, loading }: CardListProps) => {
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {loading ? (
         <>
-          {[...Array(15)].map((_, index) => (
+          {[...Array(6)].map((_, index) => (
             <CardSkeleton key={index} />
           ))}
         </>
@@ -90,7 +92,11 @@ const CardList = ({ cards, loading }: CardListProps) => {
                     priority
                   />
                 </ProfileIcon>
-                <Typography variant="h6" component="div">
+                <Typography
+                  variant="h6"
+                  component="div"
+                  color={theme.palette.text.primary}
+                >
                   {card.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">

@@ -18,7 +18,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import theme from "@src/theme/theme";
-
 import CustomDrawer from "@src/components/Drawer/SideBar";
 
 const secondaryColor = theme.palette.secondary.main;
@@ -55,7 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -175,8 +173,11 @@ export default function PrimarySearchAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="static"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
+        position="fixed" // Utilize sticky para manter o AppBar fixo
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 2,
+          top: 0,
+        }}
       >
         <Toolbar>
           <IconButton
