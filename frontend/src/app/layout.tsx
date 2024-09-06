@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
+import FABCreateCampaign from "@src/components/FloatingActionButton/FABCreateCampaign";
 import PrimarySearchAppBar from "@src/components/AppBar/AppBar";
 import theme from "@src/theme/theme";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
               {/* Ajuste o paddingTop conforme o height da AppBar */}
               {children}
             </div>
+            <FABCreateCampaign />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

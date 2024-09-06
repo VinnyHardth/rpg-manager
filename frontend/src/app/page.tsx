@@ -1,9 +1,10 @@
 "use client";
 import * as React from "react";
-import CardList from "@src/components/CardList/CardListCampaign";
-import { Box } from "@mui/material";
 
+import { Box } from "@mui/material";
 import { cardData } from "@src/mocks/campaign.mocks";
+
+import CardList from "@src/components/CardList/CardListCampaign";
 
 const App = () => {
   // Simular um estado de carregamento (se necessário)
