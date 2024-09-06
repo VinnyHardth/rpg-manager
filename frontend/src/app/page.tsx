@@ -1,6 +1,8 @@
 "use client";
 import * as React from "react";
 import CardList from "@src/components/CardList/CardList";
+import { Box } from "@mui/material";
+
 import { cardData } from "@src/mocks/campaign.mocks";
 
 const App = () => {
@@ -13,9 +15,9 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <Box>
       <CardList cards={cardData} loading={loading} />
-    </div>
+    </Box>
   );
 };
 

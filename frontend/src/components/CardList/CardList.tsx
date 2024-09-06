@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Card, CardContent, Typography, Box, Link } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, keyframes } from "@mui/material/styles";
 import Image from "next/image";
 import CardSkeleton from "../Card/CardSkeleton";
 
@@ -18,10 +18,19 @@ interface CardListProps {
   loading: boolean;
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const Banner = styled("img")(({ theme }) => ({
-  width: "100%", // Faz com que a imagem se ajuste ao tamanho do card
+  width: "100%",
   height: 140,
-  objectFit: "cover", // Mantém a proporção da imagem sem distorcer
+  objectFit: "cover",
 }));
 
 const ProfileIcon = styled("div")(({ theme }) => ({
@@ -47,14 +56,15 @@ const ProfileIcon = styled("div")(({ theme }) => ({
 const CardContainer = styled(Card)(({ theme }) => ({
   maxWidth: 345,
   margin: theme.spacing(2),
-  position: "relative", // Necessário para o posicionamento do ProfileIcon
+  position: "relative",
+  opacity: 0, // Inicialmente invisível
+  animation: `${fadeIn} 0.5s forwards`, // Animação de desvanecimento
 }));
 
 const CardList = ({ cards, loading }: CardListProps) => {
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+    <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {loading ? (
-        // Exibir skeletons se estiver carregando
         <>
           {[...Array(15)].map((_, index) => (
             <CardSkeleton key={index} />
@@ -62,13 +72,13 @@ const CardList = ({ cards, loading }: CardListProps) => {
         </>
       ) : (
         cards.map((card) => (
-          <Link key={card.id} href={`/campaign/${card.id}`}>
-            <CardContainer key={card.id}>
+          <CardContainer key={card.id}>
+            <Link href={`/campaign/${card.id}`}>
               <Banner
-                src={card.bannerUrl} // URL da imagem do banner
-                alt={`${card.name} Banner`} // Texto alternativo para acessibilidade
-                height={140} // Altura do banner
-                width={345} // Largura do banner
+                src={card.bannerUrl}
+                alt={`${card.name} Banner`}
+                height={140}
+                width={345}
               />
               <CardContent>
                 <ProfileIcon>
@@ -80,7 +90,6 @@ const CardList = ({ cards, loading }: CardListProps) => {
                     priority
                   />
                 </ProfileIcon>
-
                 <Typography variant="h6" component="div">
                   {card.name}
                 </Typography>
@@ -91,8 +100,8 @@ const CardList = ({ cards, loading }: CardListProps) => {
                   {card.system}
                 </Typography>
               </CardContent>
-            </CardContainer>
-          </Link>
+            </Link>
+          </CardContainer>
         ))
       )}
     </Box>
