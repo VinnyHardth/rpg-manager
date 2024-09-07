@@ -33,31 +33,32 @@ const BannerContainer = styled("div")({
   height: 140,
   position: "relative",
   overflow: "hidden",
-  borderRadius: 0,
+  borderTopRightRadius: 32,
+  borderTopLeftRadius: 32,
 });
-
-const ProfileIcon = styled("div")(({ theme }) => ({
-  width: 60,
-  height: 60,
-  borderRadius: "50%",
-  overflow: "hidden",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  position: "absolute",
-  top: 10,
-  left: 10,
-  border: `3px solid ${theme.palette.background.paper}`,
-  backgroundColor: theme.palette.background.default,
-}));
 
 const CardContainer = styled(Card)(({ theme }) => ({
   maxWidth: 635,
   minWidth: 635,
+  display: "flex",
+  flexDirection: "column",
+  borderTopRightRadius: 32,
+  borderTopLeftRadius: 32,
   margin: theme.spacing(2),
   position: "relative",
-  opacity: 0, // Inicialmente invisível
-  animation: `${fadeIn} 0.5s forwards`, // Animação de desvanecimento
+  opacity: 0,
+  animation: `${fadeIn} 0.5s forwards`,
+  height: "auto", // Ensure container height adapts to content
+}));
+
+const CardContentStyled = styled(CardContent)(({ theme }) => ({
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  background: "linear-gradient(to bottom, rgba(0,0,0,0), rgba(20,25,43,))",
+  color: theme.palette.text.secondary,
+  padding: theme.spacing(2),
+  boxSizing: "border-box", // Ensure padding and border are included in the element's total width and height
 }));
 
 const CardList = ({ cards, loading }: CardListProps) => {
@@ -72,41 +73,52 @@ const CardList = ({ cards, loading }: CardListProps) => {
       ) : (
         cards.map((card) => (
           <CardContainer key={card.id}>
-            <Link href={`/campaign/${card.id}`}>
+            <Link
+              href={`/campaign/${card.id}`}
+              sx={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+              }}
+            >
               <BannerContainer>
-                <Image
+                <BannerImage
                   src={card.bannerUrl}
-                  alt={`${card.name} Banner`}
-                  fill // Preenche o contêiner
-                  style={{ objectFit: "cover" }} // Ajusta a imagem para cobrir o contêiner
-                  sizes="(max-width: 600px) 100vw, 50vw" // Ajuste o tamanho da imagem com base na tela
-                  priority
+                  alt={card.name}
+                  layout="fill"
+                  objectFit="cover"
                 />
+                <Overlay>
+                  <IconContainer>
+                    <Image
+                      src={card.iconUrl}
+                      alt={`${card.name} icon`}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </IconContainer>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    marginLeft={5}
+                    color={theme.palette.text.primary}
+                  >
+                    {card.name}
+                  </Typography>
+                </Overlay>
               </BannerContainer>
-              <CardContent>
-                <ProfileIcon>
-                  <Image
-                    src={card.iconUrl}
-                    alt={`${card.name} Icon`}
-                    width={60}
-                    height={60}
-                    priority
-                  />
-                </ProfileIcon>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  color={theme.palette.text.primary}
-                >
-                  {card.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {card.description}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {card.system}
-                </Typography>
-              </CardContent>
+              <CardContentStyled>
+                <Box>
+                  <Typography variant="body2" color="white" sx={{ flex: 1 }}>
+                    {card.description}
+                  </Typography>
+                  <Typography variant="body2" color="white">
+                    {card.system}
+                  </Typography>
+                </Box>
+              </CardContentStyled>
             </Link>
           </CardContainer>
         ))
@@ -116,3 +128,36 @@ const CardList = ({ cards, loading }: CardListProps) => {
 };
 
 export default CardList;
+
+const Overlay = styled("div")({
+  position: "absolute",
+  bottom: "0",
+  left: "0",
+  right: "0",
+  height: "60px",
+  backgroundColor: theme.palette.background.paper,
+  borderTopLeftRadius: "32px",
+  borderTopRightRadius: "32px",
+  display: "flex",
+  alignItems: "left",
+  justifyContent: "left",
+  boxSizing: "border-box",
+});
+
+const BannerImage = styled(Image)({
+  borderTopLeftRadius: "32px",
+  borderTopRightRadius: "32px",
+});
+
+const IconContainer = styled("div")({
+  position: "relative",
+  top: "5%",
+  left: "5%",
+  width: "80px",
+  height: "80px",
+  borderRadius: "10px",
+  overflow: "hidden",
+  transform: "translateY(-50%)",
+  border: "3px solid white",
+  backgroundColor: "white",
+});

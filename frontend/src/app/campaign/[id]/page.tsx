@@ -5,9 +5,8 @@ import { styled } from "@mui/material/styles";
 import { cardData } from "@src/mocks/campaign.mocks";
 import { useParams } from "next/navigation";
 import theme from "@src/theme/theme";
-import CardListCharacters from "@src/components/CardList/CardListCharacters";
-import { playerCharacters } from "@src/mocks/characters.mocks";
 import HorizontalScrollContainerWithHover from "@src/components/Container/HorizontalScrollContainer";
+
 interface Card {
   id: number;
   name: string;
@@ -174,10 +173,10 @@ const Overlay = styled("div")({
 
 const IconContainer = styled("div")({
   position: "absolute",
-  top: "5%",
+  top: "-1%",
   left: "5%",
-  width: "80px",
-  height: "80px",
+  width: "120px",
+  height: "120px",
   borderRadius: "10px",
   overflow: "hidden",
   transform: "translateY(-50%)",
