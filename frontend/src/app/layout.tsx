@@ -4,7 +4,7 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
 import FABCreateCampaign from "@src/components/FloatingActionButton/FABCreateCampaign";
-import PrimarySearchAppBar from "@src/components/AppBar/AppBar";
+import PrimarySearchAppBar from "@src/components/AppBar/PrimarySearchAppBar";
 import theme from "@src/theme/theme";
 
 export const metadata: Metadata = {
