@@ -1,21 +1,10 @@
 "use client";
-import { Button, Box, Typography } from "@mui/material";
-import { useParams } from "next/navigation";
-import { cardData } from "@src/mocks/campaign.mocks";
+import { useState } from "react";
+import { Button, Box, Typography, TextField } from "@mui/material";
 import Banner from "@src/components/CampaignDetails/Banner";
-import CardInfo from "@src/components/CampaignDetails/CardInfo";
-import CardDescription from "@src/components/CampaignDetails/CardDescription";
+import UploadModal from "@src/components/CampaignCreate/UploadModal";
 import { styled } from "@mui/material/styles";
 import theme from "@src/theme/theme";
-
-interface Card {
-  id: number;
-  name: string;
-  description: string;
-  system: string;
-  bannerUrl: string;
-  iconUrl: string;
-}
 
 const CardContainer = styled("div")({
   maxWidth: "1000px",
@@ -34,48 +23,210 @@ const Content = styled("div")({
 
 const Header = styled(Box)({
   display: "flex",
+  justifyContent: "flex-end",
   alignItems: "center",
   marginBottom: "16px",
-  justifyContent: "space-between",
+  width: "100%", // Garante que o Header ocupe toda a largura disponível
+  gap: "16px", // Espaçamento entre o TextField e o botão
 });
 
 const CardDetail = () => {
-  const { id } = useParams();
-  const cardId = parseInt(id as string, 10);
+  const [open, setOpen] = useState(false);
+  const [bannerUrl, setBannerUrl] = useState(
+    "https://placehold.jp/635x140.png"
+  );
+  const [iconUrl, setIconUrl] = useState("https://placehold.jp/60x60.png");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [system, setSystem] = useState("");
+  const [language, setLanguage] = useState("");
+  const [platform, setPlatform] = useState("");
 
-  const card: Card | undefined = cardData.find((card) => card.id === cardId);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  if (!card) {
-    return <div>Card não encontrado.</div>;
-  }
+  const handleUpload = (newBannerUrl: string, newIconUrl: string) => {
+    setBannerUrl(newBannerUrl);
+    setIconUrl(newIconUrl);
+  };
 
   return (
     <CardContainer>
-      <Banner
-        bannerUrl={card.bannerUrl}
-        iconUrl={card.iconUrl}
-        name={card.name}
-      />
+      <Banner bannerUrl={bannerUrl} iconUrl={iconUrl} name={name} />
       <Content>
-        <Header>
-          <Typography
-            variant="h4"
-            component="div"
-            color={theme.palette.text.primary}
-          >
-            {card.name}
-          </Typography>
+        <Header display={"flex"}>
           <Button
             variant="contained"
             color="secondary"
-            style={{ marginTop: "-8%" }}
+            onClick={handleOpen}
+            style={{ marginTop: "-7%" }}
           >
-            Participar
+            Upload Imagens
           </Button>
         </Header>
-        <CardInfo system={card.system} createdAt="xx/xx/xxxx" />
-        <CardDescription description={card.description} />
+        <Box>
+          <TextField
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            variant="outlined"
+            label="Nome da Campanha"
+            placeholder="Ex: Roberto's Adventures"
+            InputLabelProps={{
+              shrink: true, // Garante que a label esteja minimizada
+            }}
+            sx={{
+              mb: 2,
+              width: "100%", // Garante que o TextField ocupe toda a largura disponível
+              fontSize: "2rem",
+              fontWeight: "bold",
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+
+          <TextField
+            value={system}
+            onChange={(e) => setSystem(e.target.value)}
+            variant="outlined"
+            label="Sistema de RPG"
+            placeholder="Sistema de RPG"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+            sx={{
+              mb: 2,
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+          <TextField
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            variant="outlined"
+            label="Idioma"
+            placeholder="Idioma"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+            sx={{
+              mb: 2,
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+          <TextField
+            value={platform}
+            onChange={(e) => setPlatform(e.target.value)}
+            variant="outlined"
+            label="Plataforma"
+            placeholder="Plataforma"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+            sx={{
+              mb: 2,
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+          <TextField
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            variant="outlined"
+            label="Descrição"
+            placeholder="Descrição da Campanha"
+            multiline
+            rows={4}
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white",
+              },
+            }}
+          />
+        </Box>
       </Content>
+      <UploadModal open={open} onClose={handleClose} onUpload={handleUpload} />
     </CardContainer>
   );
 };

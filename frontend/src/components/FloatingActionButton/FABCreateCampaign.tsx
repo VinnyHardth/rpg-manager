@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { alpha, styled } from "@mui/material/styles";
+import { useRouter } from "next/navigation";
 
 // Estilizando o Fab para exibir apenas o contorno
 const OutlinedFab = styled(Fab)(({ theme }) => ({
@@ -18,6 +19,12 @@ const OutlinedFab = styled(Fab)(({ theme }) => ({
 }));
 
 export default function FABCreateCampaign() {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/campaign/create");
+  };
+
   return (
     <Box
       sx={{
@@ -26,7 +33,7 @@ export default function FABCreateCampaign() {
         right: 16, // Ajusta a distância da borda direita da tela
       }}
     >
-      <OutlinedFab aria-label="add">
+      <OutlinedFab aria-label="add" onClick={handleClick}>
         <AddIcon />
       </OutlinedFab>
     </Box>
